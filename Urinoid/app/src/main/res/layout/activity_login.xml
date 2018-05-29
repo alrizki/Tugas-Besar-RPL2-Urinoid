@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="@drawable/background">
+
+        <TextView
+            android:id="@+id/hallo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:text="Hallo,"
+            android:textColor="#fff"
+            android:layout_marginLeft="40dp"/>
+
+        <TextView
+            android:id="@+id/selamat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:text="Selamat Datang."
+            android:textColor="#fff"
+            android:layout_marginLeft="40dp"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/AppTheme.TextErrorAppearance"
+            app:hintTextAppearance="@style/AppTheme.TextFloatLabelAppearance">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint=" Email"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="5dp"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/white"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            app:errorEnabled="true"
+            app:passwordToggleEnabled="true"
+            app:errorTextAppearance="@style/AppTheme.TextErrorAppearance"
+            app:hintTextAppearance="@style/AppTheme.TextFloatLabelAppearance">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint=" Password"
+                    android:drawableStart="@drawable/ic_pass"
+                    android:drawablePadding="5dp"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/white"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Belum Punya Akun ? Daftar"
+                    android:textSize="16dp"
+                    android:textColor="@color/gray"/>
+                <TextView
+                    android:id="@+id/signupLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Disini"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="3dp"
+                    android:clickable="true"
+                    android:textStyle="bold"
+                    android:textColor="@drawable/text_color_change"/>
+        </LinearLayout>
+
+        <Button
+             android:id="@+id/btnSignin"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign in"
+            android:textSize="20dp"
+            android:theme="@style/PrimaryFlatButton" />
+</LinearLayout>
