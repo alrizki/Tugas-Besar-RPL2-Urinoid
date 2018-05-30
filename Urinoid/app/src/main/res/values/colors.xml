@@ -4,9 +4,11 @@
     <color name="colorPrimaryDark">#0288D1</color>
     <color name="colorAccent">#03A9F4</color>
     <color name="blue">#00e1ff</color>
+    <color name="lightBlue">#97f1ff</color>
     <color name="white">#FFF</color>
-    <color name="graylight">#fafafa</color>
+    <color name="graylight">#e4e4e4</color>
     <color name="gray">#454545</color>
-    <color name="whiteTransparent">#80FFFFFF</color>
+    <color name="whiteTransparent">#90FFFFFF</color>
     <color name="blackTransparent">#80000000</color>
+    <color name="black">#000000</color>
 </resources>

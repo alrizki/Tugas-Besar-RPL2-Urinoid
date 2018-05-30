@@ -5,9 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/white</item>
-        <item name="errorTextAppearance">@style/AppTheme.TextErrorAppearance</item>
-        <item name="hintTextAppearance">@style/AppTheme.TextFloatLabelAppearance</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
 
@@ -27,6 +25,15 @@
         <!-- Floating label appearance here -->
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">18sp</item>
+        <item name="android:textColorHint">@color/white</item>
     </style>
 
+    <style name="MyEditTextTheme">
+        <item name="colorControlNormal">#ffffff</item>
+        <item name="colorControlActivated">#ffffff</item>
+        <item name="colorControlHighlight">#ffffff</item>
+        <item name="colorAccent">@android:color/white</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textColorHint">#ffffff</item>
+    </style>
 </resources>

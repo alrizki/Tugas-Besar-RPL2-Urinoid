@@ -17,12 +17,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:textColor="#FFF"
+        android:textColor="@color/black"
         app:arrowWidth="10dp"
         app:angle="8dp"
         app:arrowHeight="10dp"
         app:arrowLocation="left"
         app:arrowCenter="true"
-        app:bubbleColor="#ecc900"/>
+        app:bubbleColor="@color/lightBlue"/>
 
 </RelativeLayout>

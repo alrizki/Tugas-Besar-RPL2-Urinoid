@@ -10,13 +10,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:textColor="#FFF"
+        android:textColor="@color/black"
         android:layout_alignParentRight="true"
         app:arrowWidth="10dp"
         app:angle="8dp"
         app:arrowHeight="10dp"
         app:arrowLocation="right"
         app:arrowCenter="true"
-        app:bubbleColor="#00a9ec"/>
+        app:bubbleColor="@color/graylight"/>
 
 </RelativeLayout>

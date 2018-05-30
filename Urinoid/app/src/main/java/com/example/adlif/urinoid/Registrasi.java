@@ -110,4 +110,15 @@ public class Registrasi extends AppCompatActivity {
             return true;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent i;
+
+        super.onBackPressed();
+        i = new Intent(Registrasi.this, Login.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
+        finish();
+    }
 }

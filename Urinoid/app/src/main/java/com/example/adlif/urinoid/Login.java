@@ -1,6 +1,7 @@
 package com.example.adlif.urinoid;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ public class Login extends AppCompatActivity {
 
     private TextInputLayout textInputEmail;
     private TextInputLayout textInputPassword;
+
+    boolean doubleTap = false;
 
     Button btnsignin;
 
@@ -76,6 +79,23 @@ public class Login extends AppCompatActivity {
         } else {
             textInputPassword.setError(null);
             return true;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleTap) {
+            super.onBackPressed();
+        } else {
+            Toast.makeText(this, "Tekan Lagi Untuk Keluar Aplikasi", Toast.LENGTH_SHORT).show();
+            doubleTap = true;
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doubleTap = false;
+                }
+            },500);
         }
     }
 }

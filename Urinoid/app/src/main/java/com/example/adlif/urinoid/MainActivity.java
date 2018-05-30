@@ -1,15 +1,19 @@
 package com.example.adlif.urinoid;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.adlif.urinoid.Adapter.CustomAdapter;
 import com.example.adlif.urinoid.Helper.HttpDataHelper;
@@ -24,6 +28,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
+
+    boolean doubleTap = false;
 
     ListView listView;
     EditText editText;
@@ -40,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.list_of_message);
         editText = findViewById(R.id.user_message);
+
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Urinoid");
+        toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
 
         _add.setOnClickListener(new View.OnClickListener() {
 
@@ -91,6 +102,23 @@ public class MainActivity extends AppCompatActivity {
             models.add(chatModel);
             CustomAdapter adapter = new CustomAdapter(models,getApplicationContext());
             listView.setAdapter(adapter);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleTap) {
+            super.onBackPressed();
+        } else {
+            Toast.makeText(this, "Tekan Lagi Untuk Keluar Aplikasi", Toast.LENGTH_SHORT).show();
+            doubleTap = true;
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doubleTap = false;
+                }
+            },500);
         }
     }
 }
