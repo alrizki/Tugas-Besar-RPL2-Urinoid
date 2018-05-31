@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/m" android:title="Maslah"/>
+<item android:id="@+id/k" android:title="Kesakitan"/>
+<item android:id="@+id/dgt" android:title="Dan Gatal"/>
+<item android:id="@+id/dkb" android:title="Dan Kehebohan"/>
+<item android:id="@+id/dks" android:title="Dan Kesakitan"/>
+<item android:id="@+id/dk" android:title="Dan Kutu"/>
+<item android:id="@+id/dg" android:title="Dan Gatal"/>
+<item android:id="@+id/ds" android:title="Dan Kesakitan"/>
+<item android:id="@+id/ss" android:title="Sakit Sekali"/>
+<item android:id="@+id/logout" android:title="Log out"/>
+</menu>
