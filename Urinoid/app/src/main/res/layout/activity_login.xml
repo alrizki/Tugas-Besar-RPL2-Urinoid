@@ -10,75 +10,74 @@
     android:layout_gravity="center_vertical"
     android:background="@drawable/background">
 
-        <TextView
-            android:id="@+id/hallo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:text="Hallo,"
-            android:textColor="#fff"
-            android:layout_marginTop="80dp"
-            android:layout_marginLeft="40dp"/>
+    <TextView
+        android:id="@+id/hallo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="Hallo,"
+        android:textColor="#fff"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="40dp"/>
 
-        <TextView
-            android:id="@+id/selamat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:text="Selamat Datang."
-            android:textColor="#fff"
-            android:layout_marginLeft="40dp"/>
+    <TextView
+        android:id="@+id/selamat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="Selamat Datang."
+        android:textColor="#fff"
+        android:layout_marginLeft="40dp"/>
 
-        <ScrollView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="0dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             android:elevation="0dp">
 
-            <LinearLayout
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/text_input_username"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:elevation="0dp">
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/text_input_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            app:errorEnabled="true"
-            android:textColorHint="@color/whiteTransparent"
-            app:errorTextAppearance="@style/AppTheme.TextErrorAppearance"
-            app:hintTextAppearance="@style/AppTheme.TextFloatLabelAppearance">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                app:errorEnabled="true"
+                android:textColorHint="@color/whiteTransparent"
+                app:errorTextAppearance="@style/AppTheme.TextErrorAppearance"
+                app:hintTextAppearance="@style/AppTheme.TextFloatLabelAppearance">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/email"
+                    android:id="@+id/username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint=" Email"
+                    android:hint=" Username"
                     android:drawableStart="@drawable/ic_email"
                     android:drawablePadding="5dp"
-                    android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="@color/white"
                     android:theme="@style/MyEditTextTheme"/>
 
-        </android.support.design.widget.TextInputLayout>
+            </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/text_input_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            app:errorEnabled="true"
-            app:passwordToggleEnabled="true"
-            android:textColorHint="@color/whiteTransparent"
-            app:passwordToggleTint="@color/white"
-            app:errorTextAppearance="@style/AppTheme.TextErrorAppearance"
-            app:hintTextAppearance="@style/AppTheme.TextFloatLabelAppearance">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/text_input_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                app:errorEnabled="true"
+                app:passwordToggleEnabled="true"
+                android:textColorHint="@color/whiteTransparent"
+                app:passwordToggleTint="@color/white"
+                app:errorTextAppearance="@style/AppTheme.TextErrorAppearance"
+                app:hintTextAppearance="@style/AppTheme.TextFloatLabelAppearance">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/password"
@@ -93,15 +92,15 @@
                     android:textColor="@color/white"
                     android:theme="@style/MyEditTextTheme"/>
 
-        </android.support.design.widget.TextInputLayout>
+            </android.support.design.widget.TextInputLayout>
 
-        <LinearLayout
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -118,17 +117,17 @@
                     android:clickable="true"
                     android:textStyle="bold"
                     android:textColor="@drawable/text_color_change"/>
-        </LinearLayout>
-
-        <Button
-             android:id="@+id/btnSignin"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign in"
-            android:textSize="20dp"
-            android:theme="@style/PrimaryFlatButton" />
             </LinearLayout>
-        </ScrollView>
+
+            <Button
+                android:id="@+id/btnSignin"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign in"
+                android:textSize="20dp"
+                android:theme="@style/PrimaryFlatButton" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

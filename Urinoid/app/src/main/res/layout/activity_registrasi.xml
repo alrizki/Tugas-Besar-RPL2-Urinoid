@@ -34,12 +34,12 @@
         android:elevation="0dp"
         android:layout_gravity="center">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:elevation="0dp"
-        android:gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:elevation="0dp"
+            android:gravity="center">
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/text_input_email"
@@ -154,40 +154,40 @@
 
             </android.support.design.widget.TextInputLayout>
 
-    <LinearLayout
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sudah Punya Akun ? Masuk"
-            android:textSize="16dp"
-            android:textColor="@color/gray"/>
-        <TextView
-            android:id="@+id/signinLink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Disini"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="3dp"
-            android:clickable="true"
-            android:textColor="@drawable/text_color_change"/>
-    </LinearLayout>
+            <LinearLayout
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sudah Punya Akun ? Masuk"
+                    android:textSize="16dp"
+                    android:textColor="@color/gray"/>
+                <TextView
+                    android:id="@+id/signinLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Disini"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="3dp"
+                    android:clickable="true"
+                    android:textColor="@drawable/text_color_change"/>
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/btnSignup"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:textSize="20dp"
-        android:layout_marginBottom="20dp"
-        android:theme="@style/PrimaryFlatButton" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/btnSignup"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign Up"
+                android:textSize="20dp"
+                android:layout_marginBottom="20dp"
+                android:theme="@style/PrimaryFlatButton" />
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>

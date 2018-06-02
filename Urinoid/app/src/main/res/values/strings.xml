@@ -1,7 +1,17 @@
 <resources>
     <string name="app_name">Urinoid</string>
-    <string name="simsimi_api">1d0da03e-a7e2-4a99-815d-048830bef354</string>
     <string name="title_activity_login">Sign in</string>
+
+    <!-- Clarifai -->
+    <string name="clarifai_api_key">de564fe686994109b816d319d1f17fd0</string>
+
+    <string name="error_external_storage_permission_not_granted">You must accept this permission so we can upload your images!</string>
+
+    <string name="error_while_contacting_api">Error while contacting Clarifai API</string>
+    <string name="no_results_from_api">API did not return any results</string>
+
+    <string name="upload_image_hint">Click the button in the bottom-right corner to upload an image!</string>
+
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
