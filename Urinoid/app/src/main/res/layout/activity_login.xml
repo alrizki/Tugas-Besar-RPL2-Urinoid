@@ -10,24 +10,54 @@
     android:layout_gravity="center_vertical"
     android:background="@drawable/background">
 
-    <TextView
-        android:id="@+id/hallo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="Hallo,"
-        android:textColor="#fff"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="40dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:weightSum="2">
 
-    <TextView
-        android:id="@+id/selamat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="Selamat Datang."
-        android:textColor="#fff"
-        android:layout_marginLeft="40dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/hallo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:text="Hallo,"
+                android:textColor="@color/white"
+                android:layout_marginLeft="30dp"/>
+
+            <TextView
+                android:id="@+id/selamat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:text="Selamat Datang."
+                android:textColor="@color/white"
+                android:layout_marginLeft="30dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/logo"
+                android:padding="5dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -57,7 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint=" Username"
-                    android:drawableStart="@drawable/ic_email"
+                    android:drawableStart="@drawable/ic_username"
                     android:drawablePadding="5dp"
                     android:maxLines="1"
                     android:singleLine="true"
