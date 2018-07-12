@@ -3,6 +3,7 @@ package urinoid.urinoid;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.google.gson.Gson;
@@ -29,18 +31,19 @@ import urinoid.urinoid.activity.RecognizeConceptsActivity;
 import urinoid.urinoid.adapter.CustomAdapter;
 import urinoid.urinoid.models.ChatModel;
 
-public class Chatbot extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
+public class Chatbot extends AppCompatActivity {
 
     ListView listView;
     EditText editText;
     List<ChatModel> list_chat = new ArrayList<>();
     @BindView(R.id.send) TextView _send;
     @BindView(R.id.camera) TextView _camera;
+    boolean doubleTap = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chatbot);
+        setContentView(R.layout.chatbot_content_drawer);
         ButterKnife.bind(this);
 
         listView = findViewById(R.id.list_of_message);
@@ -48,14 +51,6 @@ public class Chatbot extends AppCompatActivity implements NavigationView.OnNavig
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
         _camera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,56 +100,18 @@ public class Chatbot extends AppCompatActivity implements NavigationView.OnNavig
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
+        if (doubleTap) {
             super.onBackPressed();
+        } else {
+            Toast.makeText(this, "Tekan Lagi Untuk Keluar Aplikasi", Toast.LENGTH_SHORT).show();
+            doubleTap = true;
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doubleTap = false;
+                }
+            },500);
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.drawer, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.menu_camera) {
-            Intent intent = new Intent(getApplicationContext(), RecognizeConceptsActivity.class);
-            startActivity(intent);
-            finish();
-        } else if (id == R.id.menu_galeri) {
-
-        } else if (id == R.id.menu_logout) {
-
-        }
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-
 }

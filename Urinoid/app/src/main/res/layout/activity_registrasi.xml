@@ -19,7 +19,8 @@
             android:id="@+id/Logo"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginBottom="10dp">
             <ImageView
                 android:layout_width="162dp"
                 android:layout_height="150dp"
@@ -37,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:text="DAFTAR"
                 android:textColor="@color/telaPrimary"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:textStyle="bold"
                 android:fontFamily="@font/droid_sans_mono"/>
         </LinearLayout>
