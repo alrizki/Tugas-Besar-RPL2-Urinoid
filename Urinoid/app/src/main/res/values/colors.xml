@@ -11,4 +11,8 @@
     <color name="whiteTransparent">#90FFFFFF</color>
     <color name="blackTransparent">#80000000</color>
     <color name="black">#000000</color>
+    <color name="telaPrimary">#009688</color>
+    <color name="telaPrimaryLight">#B2DFDB</color>
+    <color name="telaPrimaryDark">#00796B</color>
+    <color name="telaPrimaryAccent">#009688</color>
 </resources>

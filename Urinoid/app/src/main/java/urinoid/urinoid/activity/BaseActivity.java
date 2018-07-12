@@ -17,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewStub;
 
+import urinoid.urinoid.Chatbot;
+import urinoid.urinoid.Login;
 import urinoid.urinoid.R;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -31,6 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import rx.functions.Action1;
+import urinoid.urinoid.Registrasi;
 
 /**
  * A common class to set up boilerplate logic for
@@ -130,5 +133,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         return true;
       }
     };
+  }
+
+  @Override
+  public void onBackPressed() {
+    Intent i;
+
+    super.onBackPressed();
+    i = new Intent(BaseActivity.this, Chatbot.class);
+    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    startActivity(i);
+    finish();
   }
 }

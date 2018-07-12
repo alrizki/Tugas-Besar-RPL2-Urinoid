@@ -5,8 +5,13 @@ import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatCheckBox;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,14 +29,16 @@ import urinoid.urinoid.database.Users;
 
 public class Registrasi extends AppCompatActivity {
 
-    private TextInputLayout textInputEmail;
-    private TextInputLayout textInputUsername;
-    private TextInputLayout textInputDisplay;
-    private TextInputLayout textInputPassword;
+    private EditText email;
+    private EditText username;
+    private EditText displayName;
+    private EditText password;
+    private EditText confpassword;
+    private AppCompatCheckBox checkbox;
 
-    Button btnsignup;
+    Button btnRegistrtation;
 
-    @BindView(R.id.signinLink) TextView _signinLink;
+    @BindView(R.id.loginLink) TextView _loginLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +46,15 @@ public class Registrasi extends AppCompatActivity {
         setContentView(R.layout.activity_registrasi);
         ButterKnife.bind(this);
 
+        checkbox = findViewById(R.id.checkbox);
+        email = findViewById(R.id.email);
+        username = findViewById(R.id.username);
+        displayName = findViewById(R.id.displayName);
+        password = findViewById(R.id.password);
+        confpassword = findViewById(R.id.confPassword);
+        btnRegistrtation = findViewById(R.id.btnRegistration);
 
-        textInputEmail = findViewById(R.id.text_input_email);
-        textInputUsername = findViewById(R.id.text_input_username);
-        textInputDisplay = findViewById(R.id.text_input_display);
-        textInputPassword = findViewById(R.id.text_input_password);
-        btnsignup = findViewById(R.id.btnSignup);
-
-        _signinLink.setOnClickListener(new  View.OnClickListener() {
+        _loginLink.setOnClickListener(new  View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (getApplicationContext(), Login.class);
@@ -55,14 +63,31 @@ public class Registrasi extends AppCompatActivity {
             }
         });
 
+        checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (!isChecked) {
+                    // show password
+                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                } else {
+                    // hide password
+                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+            }
+        });
+
         //init firebase
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference Users = database.getReference("User");
 
 
-        btnsignup.setOnClickListener(new  View.OnClickListener() {
+        btnRegistrtation.setOnClickListener(new  View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (!validateEmail() | !validateUsername()| !validateDisplay() | !validatePassword()) {
+                    return;
+                }
 
                 final ProgressDialog mDialog = new ProgressDialog(Registrasi.this);
                 mDialog.setMessage("Mohon Tunggu Sebentar");
@@ -73,8 +98,8 @@ public class Registrasi extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        Users users = new Users(textInputEmail.getEditText().getText().toString(), textInputUsername.getEditText().getText().toString(), textInputPassword.getEditText().getText().toString(), textInputDisplay.getEditText().getText().toString());
-                        Users.child(textInputUsername.getEditText().getText().toString()).setValue(users);
+                        Users users = new Users(email.getText().toString(), email.getText().toString(), password.getText().toString(), confpassword.getText().toString(), displayName.getText().toString());
+                        Users.child(username.getText().toString()).setValue(users);
                         Toast.makeText(Registrasi.this, "Berhasil Registrasi", Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(getApplicationContext(), Login.class);;
@@ -92,55 +117,67 @@ public class Registrasi extends AppCompatActivity {
     }
 
     private boolean validateEmail(){
-        String emailInput =  textInputEmail.getEditText().getText().toString().trim();
+        String emailInput =  email.getText().toString().trim();
 
         if (emailInput.isEmpty()) {
-            textInputEmail.setError("Email masih kosong");
+            email.setError("Email masih kosong");
             return false;
         } else {
-            textInputEmail.setError(null);
+            email.setError(null);
             return true;
         }
     }
 
     private boolean validateUsername(){
-        String usernameInput = textInputUsername.getEditText().getText().toString().trim();
+        String usernameInput = username.getText().toString().trim();
 
         if (usernameInput.isEmpty()){
-            textInputUsername.setError("Username masih kosong");
+            username.setError("Username masih kosong");
             return false;
         } else if (usernameInput.length() > 15){
-            textInputUsername.setError("Username terlalu panjang");
+            username.setError("Username terlalu panjang");
             return false;
         } else {
-            textInputUsername.setError(null);
             return true;
         }
     }
 
     private boolean validateDisplay(){
-        String displayInput = textInputDisplay.getEditText().getText().toString().trim();
+        String displayInput = displayName.getText().toString().trim();
 
         if (displayInput.isEmpty()){
-            textInputDisplay.setError("Nama masih kosong");
+            displayName.setError("Nama masih kosong");
             return false;
         } else if (displayInput.length() > 15){
-            textInputDisplay.setError("Nama terlalu panjang");
+            displayName.setError("Nama terlalu panjang");
             return false;
         } else {
-            textInputDisplay.setError(null);
+            displayName.setError(null);
             return true;
         }
     }
 
     private boolean validatePassword(){
-        String passwordInput =  textInputPassword.getEditText().getText().toString().trim();
+        String passwordInput =  password.getText().toString().trim();
+//        String confPasswordInput =  confpassword.getText().toString().trim();
+
 
         if (passwordInput.isEmpty()) {
-            textInputPassword.setError("Password masih kosong");
+            password.setError("Password masih kosong");
+        }
+        if (passwordInput.length()<8){
+            password.setError("Password Minimal 8 karakter");
             return false;
-        } else {
-            textInputPassword.setError(null);
+        }
+//        if (confPasswordInput.isEmpty()) {
+//            confpassword.setError("Konfirmasi Password");
+//        }
+//        if (passwordInput.equals(confPasswordInput)) {
+//            confpassword.setError("Password Tidak Sama");
+//            return false;
+//        }
+        else {
+            password.setError(null);
             return true;
         }
     }

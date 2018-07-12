@@ -2,12 +2,16 @@ package urinoid.urinoid;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Handler;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatCheckBox;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
 import urinoid.urinoid.database.Users;
 
 public class Login extends AppCompatActivity {
@@ -29,14 +32,15 @@ public class Login extends AppCompatActivity {
     public static final String Username = "username";
     public static final String Password = "password";
 
-    private TextInputLayout textInputUsername;
-    private TextInputLayout textInputPassword;
+    private EditText username;
+    private EditText password;
+    private AppCompatCheckBox checkbox;
 
     boolean doubleTap = false;
 
     Button btnsignin;
 
-    @BindView(R.id.signupLink) TextView _signupLink;
+    @BindView(R.id.registrationLink) TextView _registrationLink;
 
 
     @Override
@@ -45,16 +49,30 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        textInputUsername = findViewById(R.id.text_input_username);
-        textInputPassword = findViewById(R.id.text_input_password);
+        checkbox = findViewById(R.id.checkbox);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
         btnsignin = findViewById(R.id.btnSignin);
 
-        _signupLink.setOnClickListener(new View.OnClickListener() {
+        _registrationLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Registrasi.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (!isChecked) {
+                    // show password
+                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                } else {
+                    // hide password
+                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
             }
         });
 
@@ -66,7 +84,7 @@ public class Login extends AppCompatActivity {
         btnsignin.setOnClickListener(new  View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!validateEmail() | !validatePassword()) {
+                if (!validateUsername() | !validatePassword()) {
                     return;
                 }
 
@@ -80,13 +98,13 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         //cek jika user tidak terdaftar didatabase
-                        if (dataSnapshot.child(textInputUsername.getEditText().getText().toString()).exists()) {
+                        if (dataSnapshot.child(username.getText().toString()).exists()) {
 
 
                             //ambil data user
                             mDialog.dismiss();
-                            final Users users = dataSnapshot.child(textInputUsername.getEditText().getText().toString()).getValue(Users.class);
-                            if (users.getPassword().equals(textInputPassword.getEditText().getText().toString())) {
+                            final Users users = dataSnapshot.child(username.getText().toString()).getValue(Users.class);
+                            if (users.getPassword().equals(password.getText().toString())) {
                                 Toast.makeText(Login.this, "Login Berhasil", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), Chatbot.class);
 
@@ -113,26 +131,26 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    private boolean validateEmail(){
-        String emailInput =  textInputUsername.getEditText().getText().toString().trim();
+    private boolean validateUsername(){
+        String emailInput =  username.getText().toString().trim();
 
         if (emailInput.isEmpty()) {
-            textInputUsername.setError("Email masih kosong");
+            username.setError("Username masih kosong");
             return false;
         } else {
-            textInputUsername.setError(null);
+            username.setError(null);
             return true;
         }
     }
 
     private boolean validatePassword(){
-        String passwordInput =  textInputPassword.getEditText().getText().toString().trim();
+        String passwordInput =  password.getText().toString().trim();
 
         if (passwordInput.isEmpty()) {
-            textInputPassword.setError("Password masih kosong");
+            password.setError("Password masih kosong");
             return false;
         } else {
-            textInputPassword.setError(null);
+            password.setError(null);
             return true;
         }
     }

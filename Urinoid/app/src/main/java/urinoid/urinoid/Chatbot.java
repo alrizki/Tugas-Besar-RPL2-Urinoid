@@ -34,7 +34,7 @@ public class Chatbot extends AppCompatActivity implements NavigationView.OnNavig
     ListView listView;
     EditText editText;
     List<ChatModel> list_chat = new ArrayList<>();
-    @BindView(R.id.fab) TextView _fab;
+    @BindView(R.id.send) TextView _send;
     @BindView(R.id.camera) TextView _camera;
 
     @Override
@@ -66,7 +66,7 @@ public class Chatbot extends AppCompatActivity implements NavigationView.OnNavig
             }
         });
 
-        _fab.setOnClickListener(new View.OnClickListener() {
+        _send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String text = editText.getText().toString();
@@ -79,6 +79,7 @@ public class Chatbot extends AppCompatActivity implements NavigationView.OnNavig
             }
         });
     }
+
 
     private class SimsimiAPI extends AsyncTask<List<ChatModel>,Void,String> {
 
@@ -154,4 +155,6 @@ public class Chatbot extends AppCompatActivity implements NavigationView.OnNavig
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

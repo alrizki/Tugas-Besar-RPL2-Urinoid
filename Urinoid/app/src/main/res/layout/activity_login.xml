@@ -1,163 +1,294 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login"
-    android:orientation="vertical"
-    android:gravity="center_vertical"
-    android:layout_gravity="center_vertical"
-    android:background="@drawable/background">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="30dp"
-        android:weightSum="2">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:id="@+id/hallo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="30dp"
-                android:text="Hallo,"
-                android:textColor="@color/white"
-                android:layout_marginLeft="30dp"/>
-
-            <TextView
-                android:id="@+id/selamat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="30dp"
-                android:text="Selamat Datang."
-                android:textColor="@color/white"
-                android:layout_marginLeft="30dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="240dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/logo"
-                android:padding="5dp"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
+    android:background="#FFFFFF"
+    tools:context=".Login">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="0dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:elevation="0dp">
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/text_input_username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                app:errorEnabled="true"
-                android:textColorHint="@color/whiteTransparent"
-                app:errorTextAppearance="@style/AppTheme.TextErrorAppearance"
-                app:hintTextAppearance="@style/AppTheme.TextFloatLabelAppearance">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/username"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint=" Username"
-                    android:drawableStart="@drawable/ic_username"
-                    android:drawablePadding="5dp"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textColor="@color/white"
-                    android:theme="@style/MyEditTextTheme"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/text_input_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                app:errorEnabled="true"
-                app:passwordToggleEnabled="true"
-                android:textColorHint="@color/whiteTransparent"
-                app:passwordToggleTint="@color/white"
-                app:errorTextAppearance="@style/AppTheme.TextErrorAppearance"
-                app:hintTextAppearance="@style/AppTheme.TextFloatLabelAppearance">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint=" Password"
-                    android:drawableStart="@drawable/ic_pass"
-                    android:drawablePadding="5dp"
-                    android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textColor="@color/white"
-                    android:theme="@style/MyEditTextTheme"/>
-
-            </android.support.design.widget.TextInputLayout>
+            android:gravity="center"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
+                android:id="@+id/Logo"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="162dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/icons" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/droid_sans_mono"
+                    android:text="MASUK"
+                    android:textColor="@color/telaPrimary"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp"
+                android:fadingEdgeLength="5dp"
+                app:cardBackgroundColor="#F5F5F5"
+                app:cardElevation="2dp">
+
+                <EditText
+                    android:id="@+id/username"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableLeft="@drawable/ic_username"
+                    android:drawablePadding="5dp"
+                    android:hint="Username"
+                    android:inputType="text"
+                    android:background="@android:color/transparent"/>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp"
+                android:fadingEdgeLength="5dp"
+                app:cardBackgroundColor="#F5F5F5"
+                app:cardElevation="2dp">
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableLeft="@drawable/ic_pass"
+                    android:drawablePadding="5dp"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:background="@android:color/transparent"
+                    android:imeOptions="actionDone"/>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp"
+                android:text="Lihat Password"/>
+
+            <LinearLayout
+                android:id="@+id/atau"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/alternateLogin"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="atau masuk dengan : "
+                    android:textSize="18dp"
+                    android:textColor="#000000"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/alternateLogin"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@id/atau"
+                android:layout_marginBottom="10dp"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="#F5F5F5"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        app:cardElevation="2dp"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackgroundBorderless">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:weightSum="2">
+                            <LinearLayout
+                                android:layout_width="100dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <ImageView
+                                    android:layout_width="50dp"
+                                    android:layout_height="40dp"
+                                    android:src="@drawable/facebook"/>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical"
+                                    android:text="Facebook"
+                                    android:textColor="#000000"
+                                    android:textSize="17dp"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="#F5F5F5"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        app:cardElevation="2dp"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackgroundBorderless">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:weightSum="2">
+                            <LinearLayout
+                                android:layout_width="100dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <ImageView
+                                    android:layout_width="50dp"
+                                    android:layout_height="40dp"
+                                    android:src="@drawable/google"/>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical"
+                                    android:text="Google"
+                                    android:textColor="#000000"
+                                    android:textSize="17dp"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:weightSum="2">
-                <TextView
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Belum Punya Akun ? Daftar"
-                    android:textSize="16dp"
-                    android:textColor="@color/gray"/>
-                <TextView
-                    android:id="@+id/signupLink"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:paddingRight="3dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Belum punya akun ? Daftar"
+                        android:textAlignment="center"
+                        android:textSize="16dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Disini"
-                    android:textSize="16dp"
-                    android:layout_marginLeft="3dp"
-                    android:clickable="true"
-                    android:textStyle="bold"
-                    android:textColor="@drawable/text_color_change"/>
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/registrationLink"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:text="Disini"
+                        android:textColor="@drawable/text_color_change"
+                        android:textStyle="bold"
+                        android:textSize="16dp"/>
+
+                </LinearLayout>
             </LinearLayout>
 
             <Button
                 android:id="@+id/btnSignin"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sign in"
-                android:textSize="20dp"
-                android:theme="@style/PrimaryFlatButton" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="Masuk"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:theme="@style/PrimaryButton"
+                android:gravity="center"
+                android:layout_gravity="center"/>
+
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+</RelativeLayout>
