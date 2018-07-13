@@ -117,17 +117,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:elevation="0dp"
-                        app:cardBackgroundColor="@color/graylight"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true">
+                        app:cardBackgroundColor="@color/graylight">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="Tambah"
-                            android:textColor="@color/black"
+                            android:text="Galeri"
+                            android:textColor="@drawable/text_color_change"
                             android:textAlignment="center"
-                            android:drawableTop="@drawable/ic_add"
+                            android:drawableTop="@drawable/ic_menu_gallery"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"/>
 
@@ -144,16 +142,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:elevation="0dp"
-                        app:cardBackgroundColor="@color/graylight"
-                        android:background="?android:attr/selectableItemBackgroundBorderless"
-                        android:clickable="true">
+                        app:cardBackgroundColor="@color/graylight">
 
                         <TextView
                             android:id="@+id/camera"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="Camera"
-                            android:textColor="@color/black"
+                            android:textColor="@drawable/text_color_change"
                             android:textAlignment="center"
                             android:drawableTop="@drawable/ic_menu_camera"
                             android:background="?attr/selectableItemBackgroundBorderless"
@@ -172,15 +168,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:elevation="0dp"
-                        app:cardBackgroundColor="@color/graylight"
-                        android:background="?android:attr/selectableItemBackgroundBorderless"
-                        android:clickable="true">
+                        app:cardBackgroundColor="@color/graylight">
 
                         <TextView
+                            android:id="@+id/btnLogOut"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="Log out"
-                            android:textColor="@color/black"
+                            android:textColor="@drawable/text_color_change1"
                             android:textAlignment="center"
                             android:drawableTop="@drawable/ic_exit"
                             android:background="?attr/selectableItemBackgroundBorderless"

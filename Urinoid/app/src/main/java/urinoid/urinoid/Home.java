@@ -31,7 +31,6 @@ public class Home extends AppCompatActivity{
         final Intent intent = getIntent();
 
         final String nama = intent.getStringExtra(Login.Nama);
-        final String username = intent.getStringExtra(Login.Username);
         final String password = intent.getStringExtra(Login.Password);
         final String email = intent.getStringExtra(Login.Email);
 

@@ -30,7 +30,6 @@ import urinoid.urinoid.database.Users;
 public class Registrasi extends AppCompatActivity {
 
     private EditText email;
-    private EditText username;
     private EditText displayName;
     private EditText password;
     private EditText confpassword;
@@ -48,7 +47,6 @@ public class Registrasi extends AppCompatActivity {
 
         checkbox = findViewById(R.id.checkbox);
         email = findViewById(R.id.email);
-        username = findViewById(R.id.username);
         displayName = findViewById(R.id.displayName);
         password = findViewById(R.id.password);
         confpassword = findViewById(R.id.confPassword);
@@ -85,7 +83,7 @@ public class Registrasi extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (!validateEmail() | !validateUsername()| !validateDisplay() | !validatePassword()) {
+                if (!validateEmail() | !validateDisplay() | !validatePassword()) {
                     return;
                 }
 
@@ -98,8 +96,8 @@ public class Registrasi extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        Users users = new Users(email.getText().toString(), email.getText().toString(), password.getText().toString(), confpassword.getText().toString(), displayName.getText().toString());
-                        Users.child(username.getText().toString()).setValue(users);
+                        Users users = new Users(email.getText().toString(), password.getText().toString(), confpassword.getText().toString(), displayName.getText().toString());
+                        Users.child(email.getText().toString()).setValue(users);
                         Toast.makeText(Registrasi.this, "Berhasil Registrasi", Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(getApplicationContext(), Login.class);;
@@ -124,20 +122,6 @@ public class Registrasi extends AppCompatActivity {
             return false;
         } else {
             email.setError(null);
-            return true;
-        }
-    }
-
-    private boolean validateUsername(){
-        String usernameInput = username.getText().toString().trim();
-
-        if (usernameInput.isEmpty()){
-            username.setError("Username masih kosong");
-            return false;
-        } else if (usernameInput.length() > 15){
-            username.setError("Username terlalu panjang");
-            return false;
-        } else {
             return true;
         }
     }
