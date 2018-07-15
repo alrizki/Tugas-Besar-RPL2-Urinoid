@@ -6,15 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,9 +27,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import urinoid.urinoid.Handler.HttpDataHandler;
 import urinoid.urinoid.activity.RecognizeConceptsActivity;
 import urinoid.urinoid.adapter.CustomAdapter;
 import urinoid.urinoid.models.ChatModel;
+import urinoid.urinoid.models.BotModel;
 
 public class Chatbot extends AppCompatActivity implements View.OnClickListener,GoogleApiClient.OnConnectionFailedListener {
 
@@ -83,7 +78,7 @@ public class Chatbot extends AppCompatActivity implements View.OnClickListener,G
                 String text = editText.getText().toString();
                 ChatModel model = new ChatModel(text,true);
                 list_chat.add(model);
-                new SimsimiAPI().execute(list_chat);
+                new BotApi().execute(list_chat);
 
                 //remove user message
                 editText.setText("");
@@ -130,7 +125,7 @@ public class Chatbot extends AppCompatActivity implements View.OnClickListener,G
     }
 
     //simisimi method
-    private class SimsimiAPI extends AsyncTask<List<ChatModel>,Void,String> {
+    private class BotApi extends AsyncTask<List<ChatModel>,Void,String> {
 
         String stream = null;
         List<ChatModel> models;
@@ -138,14 +133,20 @@ public class Chatbot extends AppCompatActivity implements View.OnClickListener,G
 
         @Override
         protected String doInBackground(List<ChatModel>... lists) {
+            String url = String.format("http://sandbox.api.simsimi.com/request.p?key=%s&lc=en&ft=1.0&text=%s",getString(R.string.simsimi_api),text);
             models = lists[0];
-
+            HttpDataHandler httpDataHandler = new HttpDataHandler();
+            stream = httpDataHandler.GetHTTPData(url);
             return stream;
         }
 
         @Override
         protected void onPostExecute(String s) {
+            Gson gson = new Gson();
+            BotModel response = gson.fromJson(s,BotModel.class);
 
+            ChatModel chatModel = new ChatModel(response.getResponse(),false); // get response from simsimi
+            models.add(chatModel);
             CustomAdapter adapter = new CustomAdapter(models,getApplicationContext());
             listView.setAdapter(adapter);
         }

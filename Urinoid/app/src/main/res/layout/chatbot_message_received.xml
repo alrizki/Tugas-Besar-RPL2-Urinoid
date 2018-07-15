@@ -9,7 +9,8 @@
         android:id="@+id/doctor"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/doctor"/>
+        android:src="@drawable/bot"
+        android:paddingBottom="5dp"/>
 
     <com.github.library.bubbleview.BubbleTextView
         android:id="@+id/text_message"
@@ -24,6 +25,6 @@
         app:arrowHeight="10dp"
         app:arrowLocation="left"
         app:arrowCenter="true"
-        app:bubbleColor="@color/lightBlue"/>
+        app:bubbleColor="@color/telaPrimaryLight"/>
 
 </RelativeLayout>
