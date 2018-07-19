@@ -27,7 +27,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import urinoid.urinoid.Handler.HttpDataHandler;
 import urinoid.urinoid.activity.RecognizeConceptsActivity;
 import urinoid.urinoid.adapter.CustomAdapter;
 import urinoid.urinoid.models.ChatModel;
@@ -71,6 +70,7 @@ public class Chatbot extends AppCompatActivity implements View.OnClickListener,G
                 finish();
             }
         });
+
         //onclick send button
         _send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +78,24 @@ public class Chatbot extends AppCompatActivity implements View.OnClickListener,G
                 String text = editText.getText().toString();
                 ChatModel model = new ChatModel(text,true);
                 list_chat.add(model);
-                new BotApi().execute(list_chat);
+                //new BotApi().execute(list_chat);
+
+                if (text.toString().equals("help")){
+                    String answare = new String("Khintil");
+                    ChatModel chatModel = new ChatModel(answare.toString(),false);
+                    list_chat.add(chatModel);
+                }else if (text.toString().equals("play")){
+                    String answare = new String("Khontol");
+                    ChatModel chatModel = new ChatModel(answare.toString(),false);
+                    list_chat.add(chatModel);
+                }else {
+                    String answare = new String("Bangsat");
+                    ChatModel chatModel = new ChatModel(answare.toString(),false);
+                    list_chat.add(chatModel);
+                }
+
+                CustomAdapter adapter = new CustomAdapter(list_chat,getApplicationContext());
+                listView.setAdapter(adapter);
 
                 //remove user message
                 editText.setText("");
@@ -123,35 +140,6 @@ public class Chatbot extends AppCompatActivity implements View.OnClickListener,G
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
-
-    //simisimi method
-    private class BotApi extends AsyncTask<List<ChatModel>,Void,String> {
-
-        String stream = null;
-        List<ChatModel> models;
-        String text = editText.getText().toString();
-
-        @Override
-        protected String doInBackground(List<ChatModel>... lists) {
-            String url = String.format("http://sandbox.api.simsimi.com/request.p?key=%s&lc=en&ft=1.0&text=%s",getString(R.string.simsimi_api),text);
-            models = lists[0];
-            HttpDataHandler httpDataHandler = new HttpDataHandler();
-            stream = httpDataHandler.GetHTTPData(url);
-            return stream;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            Gson gson = new Gson();
-            BotModel response = gson.fromJson(s,BotModel.class);
-
-            ChatModel chatModel = new ChatModel(response.getResponse(),false); // get response from simsimi
-            models.add(chatModel);
-            CustomAdapter adapter = new CustomAdapter(models,getApplicationContext());
-            listView.setAdapter(adapter);
-        }
-    }
-
 
     //on back press default
     @Override

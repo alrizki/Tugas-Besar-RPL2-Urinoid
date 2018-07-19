@@ -16,15 +16,15 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import clarifai2.dto.prediction.Concept;
+import clarifai2.dto.prediction.Color;
 import urinoid.urinoid.Registrasi;
 
 public class RecognizeConceptsAdapter extends RecyclerView.Adapter<RecognizeConceptsAdapter.Holder> {
 
   @NonNull
-  private List<Concept> concepts = new ArrayList<>();
+  private List<Color> concepts = new ArrayList<>();
 
-  public RecognizeConceptsAdapter setData(@NonNull List<Concept> concepts) {
+  public RecognizeConceptsAdapter setData(@NonNull List<Color> concepts) {
     this.concepts = concepts;
     notifyDataSetChanged();
     return this;
@@ -37,9 +37,9 @@ public class RecognizeConceptsAdapter extends RecyclerView.Adapter<RecognizeConc
 
   @Override
   public void onBindViewHolder(Holder holder, int position) {
-    final Concept concept = concepts.get(position);
-    holder.label.setText(concept.name() != null ? concept.name() : concept.id());
-    holder.probability.setText(String.valueOf(concept.value()));
+    final Color concept = concepts.get(position);
+    holder.label.setText(concept.hex() != null ? concept.hex() : concept.hex());
+    holder.probability.setText(String.valueOf(concept.webSafeHex()));
   }
 
   @Override

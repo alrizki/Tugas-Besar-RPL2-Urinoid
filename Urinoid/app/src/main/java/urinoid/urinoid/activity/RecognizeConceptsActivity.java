@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ViewSwitcher;
 
+import clarifai2.dto.model.ColorModel;
+import clarifai2.dto.prediction.Color;
 import urinoid.urinoid.App;
 import urinoid.urinoid.ClarifaiUtil;
 import urinoid.urinoid.R;
@@ -96,13 +98,13 @@ public final class RecognizeConceptsActivity extends BaseActivity {
     setBusy(true);
 
     // Make sure we don't show a list of old concepts while the image is being uploaded
-    adapter.setData(Collections.<Concept>emptyList());
+    adapter.setData(Collections.<Color>emptyList());
 
-    new AsyncTask<Void, Void, ClarifaiResponse<List<ClarifaiOutput<Concept>>>>() {
+    new AsyncTask<Void, Void, ClarifaiResponse<List<ClarifaiOutput<Color>>>>() {
       @Override
-      protected ClarifaiResponse<List<ClarifaiOutput<Concept>>> doInBackground(Void... params) {
+      protected ClarifaiResponse<List<ClarifaiOutput<Color>>> doInBackground(Void... params) {
         // The default Clarifai model that identifies concepts in images
-        final ConceptModel generalModel = App.get().clarifaiClient().getDefaultModels().generalModel();
+        final ColorModel generalModel = App.get().clarifaiClient().getDefaultModels().colorModel();
 
         // Use this model to predict, with the image that the user just selected as the input
         return generalModel.predict()
@@ -111,13 +113,13 @@ public final class RecognizeConceptsActivity extends BaseActivity {
       }
 
       @Override
-      protected void onPostExecute(ClarifaiResponse<List<ClarifaiOutput<Concept>>> response) {
+      protected void onPostExecute(ClarifaiResponse<List<ClarifaiOutput<Color>>> response) {
         setBusy(false);
         if (!response.isSuccessful()) {
           showErrorSnackbar(R.string.error_while_contacting_api);
           return;
         }
-        final List<ClarifaiOutput<Concept>> predictions = response.get();
+        final List<ClarifaiOutput<Color>> predictions = response.get();
         if (predictions.isEmpty()) {
           showErrorSnackbar(R.string.no_results_from_api);
           return;
