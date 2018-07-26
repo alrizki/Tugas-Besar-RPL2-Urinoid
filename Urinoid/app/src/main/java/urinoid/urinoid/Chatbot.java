@@ -80,8 +80,8 @@ public class Chatbot extends AppCompatActivity implements View.OnClickListener,G
                 list_chat.add(model);
                 //new BotApi().execute(list_chat);
 
-                if (text.toString().equals("help")){
-                    String answare = new String("Khintil");
+                if (text.toString().equals("!help")){
+                    String answare = new String("");
                     ChatModel chatModel = new ChatModel(answare.toString(),false);
                     list_chat.add(chatModel);
                 }else if (text.toString().equals("play")){
