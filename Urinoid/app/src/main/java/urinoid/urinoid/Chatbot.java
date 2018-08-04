@@ -38,6 +38,7 @@ public class Chatbot extends AppCompatActivity implements View.OnClickListener,G
     EditText editText;
     List<ChatModel> list_chat = new ArrayList<>();
     @BindView(R.id.send) TextView _send;
+    @BindView(R.id.help) TextView _help;
     @BindView(R.id.camera) TextView _camera;
     @BindView(R.id.btnLogOut) TextView _logout;
     boolean doubleTap = false;
@@ -101,6 +102,18 @@ public class Chatbot extends AppCompatActivity implements View.OnClickListener,G
                 editText.setText("");
             }
         });
+
+        _help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String answare = new String("Darawet" + '\n' + "anyeng" + '\n' + "darawet" + '\n' + "darawet" + '\n' +"anyeng");
+                ChatModel chatModel = new ChatModel(answare.toString(),false);
+                list_chat.add(chatModel);
+
+                CustomAdapter adapter = new CustomAdapter(list_chat,getApplicationContext());
+                listView.setAdapter(adapter);
+            }
+        });
     }
 
     //onclick logout button
@@ -155,7 +168,7 @@ public class Chatbot extends AppCompatActivity implements View.OnClickListener,G
                 public void run() {
                     doubleTap = false;
                 }
-            },500);
+            },1000);
         }
     }
 }

@@ -121,12 +121,13 @@
                         app:cardBackgroundColor="@color/graylight">
 
                         <TextView
+                            android:id="@+id/help"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="Galeri"
+                            android:text="Bantuan"
                             android:textColor="@drawable/text_color_change"
                             android:textAlignment="center"
-                            android:drawableTop="@drawable/ic_menu_gallery"
+                            android:drawableTop="@drawable/ic_menu_help"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"/>
 
@@ -149,10 +150,10 @@
                             android:id="@+id/camera"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="Camera"
+                            android:text="Galeri"
                             android:textColor="@drawable/text_color_change"
                             android:textAlignment="center"
-                            android:drawableTop="@drawable/ic_menu_camera"
+                            android:drawableTop="@drawable/ic_menu_gallery"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"/>
 
