@@ -29,14 +29,11 @@ import urinoid.urinoid.database.Users;
 
 public class Registrasi extends AppCompatActivity {
 
-    private EditText email;
+    private EditText username;
     private EditText displayName;
     private EditText password;
+    private EditText confpassword;
     private AppCompatCheckBox checkbox;
-
-    public static final String Nama = "nama";;
-    public static final String Email= "email";
-    public static final String Password = "password";
 
     Button btnRegistrtation;
 
@@ -49,9 +46,10 @@ public class Registrasi extends AppCompatActivity {
         ButterKnife.bind(this);
 
         checkbox = findViewById(R.id.checkbox);
-        email = findViewById(R.id.email);
+        username = findViewById(R.id.Username);
         displayName = findViewById(R.id.displayName);
         password = findViewById(R.id.password);
+        confpassword = findViewById(R.id.confPassword);
         btnRegistrtation = findViewById(R.id.btnRegistration);
 
         _loginLink.setOnClickListener(new  View.OnClickListener() {
@@ -78,14 +76,14 @@ public class Registrasi extends AppCompatActivity {
 
         //init firebase
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference Users = database.getReference("Users");
+        final DatabaseReference Users = database.getReference("User");
 
 
         btnRegistrtation.setOnClickListener(new  View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (!validateEmail() | !validateDisplay() | !validatePassword()) {
+                if (!validateUsername() | !validateDisplay() | !validatePassword()) {
                     return;
                 }
 
@@ -98,15 +96,11 @@ public class Registrasi extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        Users users = new Users(email.getText().toString(), password.getText().toString(), displayName.getText().toString());
-                        Users.child(email.getText().toString()).setValue(users);
+                        Users users = new Users(username.getText().toString(), password.getText().toString(), confpassword.getText().toString(), displayName.getText().toString());
+                        Users.child(username.getText().toString()).setValue(users);
                         Toast.makeText(Registrasi.this, "Berhasil Registrasi", Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(getApplicationContext(), Login.class);
-                        intent.putExtra(Nama, users.getNama());
-                        intent.putExtra(Email, users.getEmail());
-                        intent.putExtra(Password, users.getPassword());
-
+                        Intent intent = new Intent(getApplicationContext(), Login.class);;
                         startActivity(intent);
                         finish();
                         }
@@ -120,14 +114,14 @@ public class Registrasi extends AppCompatActivity {
         });
     }
 
-    private boolean validateEmail(){
-        String emailInput =  email.getText().toString().trim();
+    private boolean validateUsername(){
+        String usernameInput =  username.getText().toString().trim();
 
-        if (emailInput.isEmpty()) {
-            email.setError("Email masih kosong");
+        if (usernameInput.isEmpty()) {
+            username.setError("Username masih kosong");
             return false;
         } else {
-            email.setError(null);
+            username.setError(null);
             return true;
         }
     }
@@ -149,6 +143,7 @@ public class Registrasi extends AppCompatActivity {
 
     private boolean validatePassword(){
         String passwordInput =  password.getText().toString().trim();
+//        String confPasswordInput =  confpassword.getText().toString().trim();
 
 
         if (passwordInput.isEmpty()) {
@@ -158,6 +153,13 @@ public class Registrasi extends AppCompatActivity {
             password.setError("Password Minimal 8 karakter");
             return false;
         }
+//        if (confPasswordInput.isEmpty()) {
+//            confpassword.setError("Konfirmasi Password");
+//        }
+//        if (passwordInput.equals(confPasswordInput)) {
+//            confpassword.setError("Password Tidak Sama");
+//            return false;
+//        }
         else {
             password.setError(null);
             return true;

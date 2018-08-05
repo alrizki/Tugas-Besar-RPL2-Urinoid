@@ -6,25 +6,27 @@ package urinoid.urinoid.database;
 
 public class Users {
 
-    private String Email;
+    private String Username;
     private String Password;
+    private String ConfPassword;
     private String Nama;
 
     public Users() {
     }
 
-    public Users(String email, String password, String nama) {
-        Email = email;
+    public Users(String username, String password, String confPassword, String nama) {
+        Username = username;
         Password = password;
+        ConfPassword = confPassword;
         Nama = nama;
     }
 
-    public String getEmail() {
-        return Email;
+    public String getUsername() {
+        return Username;
     }
 
-    public void setEmail(String email) {
-        Email = email;
+    public void setUsername(String username) {
+        Username = username;
     }
 
     public String getPassword() {
@@ -33,6 +35,14 @@ public class Users {
 
     public void setPassword(String password) {
         Password = password;
+    }
+
+    public String getConfPassword() {
+        return ConfPassword;
+    }
+
+    public void setConfPassword(String confPassword) {
+        ConfPassword = confPassword;
     }
 
     public String getNama() {

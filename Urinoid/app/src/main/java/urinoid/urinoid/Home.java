@@ -32,7 +32,7 @@ public class Home extends AppCompatActivity{
 
         final String nama = intent.getStringExtra(Login.Nama);
         final String password = intent.getStringExtra(Login.Password);
-        final String email = intent.getStringExtra(Login.Email);
+        final String username = intent.getStringExtra(Login.Username);
 
         textNama.setText(nama);
 

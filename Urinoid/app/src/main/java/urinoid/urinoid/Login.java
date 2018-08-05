@@ -37,10 +37,10 @@ import urinoid.urinoid.database.Users;
 public class Login extends AppCompatActivity implements View.OnClickListener,GoogleApiClient.OnConnectionFailedListener{
 
     public static final String Nama = "nama";;
-    public static final String Email= "email";
+    public static final String Username= "username";
     public static final String Password = "password";
 
-    private EditText email;
+    private EditText username;
     private EditText password;
     private AppCompatCheckBox checkbox;
     private SignInButton googleSignIn;
@@ -61,7 +61,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
         ButterKnife.bind(this);
 
         checkbox = findViewById(R.id.checkbox);
-        email = findViewById(R.id.email);
+        username = findViewById(R.id.Username);
         password = findViewById(R.id.password);
         btnsignin = findViewById(R.id.btnSignin);
         googleSignIn = findViewById(R.id.googleSignIn);
@@ -93,15 +93,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
 
         //init firebase
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference Users = database.getReference("Users");
+        final DatabaseReference Users = database.getReference("User");
 
 
         btnsignin.setOnClickListener(new  View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!validateEmail() | !validatePassword()) {
-                    return;
-                }
 
                 final ProgressDialog mDialog = new ProgressDialog(Login.this);
                 mDialog.setMessage("Mohon menunggu..");
@@ -113,23 +110,23 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         //cek jika user tidak terdaftar didatabase
-                        if (dataSnapshot.child(email.getText().toString()).exists()) {
+                        if (dataSnapshot.child(username.getText().toString()).exists()) {
 
 
                             //ambil data user
                             mDialog.dismiss();
-                            final Users users = dataSnapshot.child(email.getText().toString()).getValue(Users.class);
+                            final Users users = dataSnapshot.child(username.getText().toString()).getValue(Users.class);
                             if (users.getPassword().equals(password.getText().toString())) {
                                 Toast.makeText(Login.this, "Login Berhasil", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), Chatbot.class);
 
                                 intent.putExtra(Nama, users.getNama());
-                                intent.putExtra(Email, users.getEmail());
+                                intent.putExtra(Username, users.getUsername());
                                 intent.putExtra(Password, users.getPassword());
 
                                 startActivity(intent);
                             } else {
-                                Toast.makeText(Login.this, "Email/Password Salah!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login.this, "Usename/Password Salah!", Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             mDialog.dismiss();
@@ -145,14 +142,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
         });
     }
 
-    private boolean validateEmail(){
-        String emailInput =  email.getText().toString().trim();
+    private boolean validateUsername(){
+        String usernameInput =  username.getText().toString().trim();
 
-        if (emailInput.isEmpty()) {
-            email.setError("Email masih kosong");
+        if (usernameInput.isEmpty()) {
+            username.setError("Username masih kosong");
             return false;
         } else {
-            email.setError(null);
+            username.setError(null);
             return true;
         }
     }
@@ -208,7 +205,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
         if (result.isSuccess()){
             GoogleSignInAccount account = result.getSignInAccount();
             String _email = account.getEmail();
-            email.setText(_email);
+            username.setText(_email);
             updateUI(true);
         } else {
             updateUI(false);

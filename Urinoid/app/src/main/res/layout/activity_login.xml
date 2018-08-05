@@ -58,14 +58,14 @@
                 app:cardElevation="2dp">
 
                 <EditText
-                    android:id="@+id/email"
+                    android:id="@+id/Username"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:drawableLeft="@drawable/ic_email"
                     android:drawablePadding="5dp"
-                    android:hint="Email"
+                    android:hint="Username"
                     android:inputType="text"
                     android:background="@android:color/transparent"/>
 
