@@ -8,16 +8,14 @@ public class Users {
 
     private String Email;
     private String Password;
-    private String ConfPassword;
     private String Nama;
 
     public Users() {
     }
 
-    public Users(String email, String password, String nama, String confPassword) {
+    public Users(String email, String password, String nama) {
         Email = email;
         Password = password;
-        ConfPassword = confPassword;
         Nama = nama;
     }
 
@@ -35,14 +33,6 @@ public class Users {
 
     public void setPassword(String password) {
         Password = password;
-    }
-
-    public String getconfPassword() {
-        return ConfPassword;
-    }
-
-    public void setconfPassword(String confPassword) {
-        ConfPassword = confPassword;
     }
 
     public String getNama() {

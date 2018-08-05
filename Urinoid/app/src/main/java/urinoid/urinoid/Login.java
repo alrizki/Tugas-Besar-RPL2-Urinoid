@@ -93,7 +93,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
 
         //init firebase
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference Users = database.getReference("User");
+        final DatabaseReference Users = database.getReference("Users");
 
 
         btnsignin.setOnClickListener(new  View.OnClickListener() {
@@ -129,7 +129,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
 
                                 startActivity(intent);
                             } else {
-                                Toast.makeText(Login.this, "Usename/Password Salah!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login.this, "Email/Password Salah!", Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             mDialog.dismiss();
