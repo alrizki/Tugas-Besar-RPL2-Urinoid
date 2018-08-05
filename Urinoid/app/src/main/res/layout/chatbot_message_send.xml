@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
         android:padding="10dp"
         android:textColor="@color/black"
         android:layout_alignParentRight="true"

@@ -114,6 +114,7 @@ public class Registrasi extends AppCompatActivity {
         });
     }
 
+    //Apabila Username kosong
     private boolean validateUsername(){
         String usernameInput =  username.getText().toString().trim();
 
@@ -126,6 +127,7 @@ public class Registrasi extends AppCompatActivity {
         }
     }
 
+    //validasi display name
     private boolean validateDisplay(){
         String displayInput = displayName.getText().toString().trim();
 
@@ -143,26 +145,22 @@ public class Registrasi extends AppCompatActivity {
 
     private boolean validatePassword(){
         String passwordInput =  password.getText().toString().trim();
-//        String confPasswordInput =  confpassword.getText().toString().trim();
+        String confPasswordInput =  confpassword.getText().toString().trim();
 
 
-        if (passwordInput.isEmpty()) {
+        if (passwordInput.isEmpty() && confPasswordInput.isEmpty()) {
             password.setError("Password masih kosong");
-        }
-        if (passwordInput.length()<8){
+            confpassword.setError("Password masih kosong");
+            return false;
+        } else if (passwordInput.length()<8){
             password.setError("Password Minimal 8 karakter");
             return false;
-        }
-//        if (confPasswordInput.isEmpty()) {
-//            confpassword.setError("Konfirmasi Password");
-//        }
-//        if (passwordInput.equals(confPasswordInput)) {
-//            confpassword.setError("Password Tidak Sama");
-//            return false;
-//        }
-        else {
+        } else if (passwordInput.equals(confPasswordInput)){
             password.setError(null);
             return true;
+        } else {
+            confpassword.setError("Password tidak sama");
+            return false;
         }
     }
 

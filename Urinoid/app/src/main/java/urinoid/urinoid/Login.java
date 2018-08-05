@@ -100,6 +100,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
             @Override
             public void onClick(View v) {
 
+                if (!validateUsername() | !validatePassword()) {
+                    return;
+                }
+
                 final ProgressDialog mDialog = new ProgressDialog(Login.this);
                 mDialog.setMessage("Mohon menunggu..");
                 mDialog.show();
@@ -205,7 +209,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener,Goo
         if (result.isSuccess()){
             GoogleSignInAccount account = result.getSignInAccount();
             String _email = account.getEmail();
-            username.setText(_email);
             updateUI(true);
         } else {
             updateUI(false);
